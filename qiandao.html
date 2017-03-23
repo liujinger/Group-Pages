@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <title>日历插件</title>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+    <script src="js/jquery-3.1.0.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="css/bootstrap.css" type="text/css">
+    <link rel="stylesheet" href="css/bootstrap-theme.css" type="text/css">
+</head>
+
+<style>
+    @media only screen and (min-width: 320px) {
+        html {
+            font-size: 42.666px !important;
+        }
+    }
+    @media only screen and (min-width: 360px) {
+        html {
+            font-size: 48px !important;
+        }
+    }
+    @media only screen and (min-width: 375px) {
+        html {
+            font-size: 50px !important;
+        }
+    }
+    @media only screen and (min-width: 414px) {
+        html {
+            font-size: 55.2px !important;
+        }
+    }
+    @media only screen and (min-width: 480px) {
+        html {
+            font-size: 64px !important;
+        }
+    }
+    @media only screen and (min-width: 560px) {
+        html {
+            font-size: 74.666px !important;
+        }
+    }
+    @media only screen and (min-width: 640px) {
+        html {
+            font-size: 85.333px !important;
+        }
+    }
+    @media only screen and (min-width: 720px) {
+        html {
+            font-size: 96px !important;
+        }
+    }
+    @media only screen and (min-width: 750px) {
+        html {
+            font-size: 100px !important;
+        }
+    }
+    @media only screen and (min-width: 800px) {
+        html {
+            font-size: 106.666px !important;
+        }
+    }
+    @media only screen and (min-width: 960px) {
+        html {
+            font-size: 128px !important;
+        }
+    }
+
+    #lastMonth:hover,#nextMonth:hover{
+        background-color:white;
+        color:#0055aa;
+        cursor:default;
+    }
+
+
+    body {
+        text-align: center;
+        font: 0.345rem/1rem "MicroSoft YaHei";
+    }
+    .calendarContent {
+        width: 100%;
+    }
+    table.tableDate {
+        width: 100%;
+        text-align: center;
+    }
+    td {
+        border-radius: 100%;
+    }
+    th{
+        font-weight: normal;
+        text-align:center;
+    }
+    .active {
+
+        box-shadow: -2px -2px 2px 2px rgba(12, 239, 85, 0.28) inset;
+        /*box-shadow:-5px 0 5px rgba(0, 203, 0, 0.37), !*左边阴影*!*/
+        /*5px 0 5px transparent, !*右边阴影*!*/
+        /*0 -5px 5px rgba(0, 203, 0, 0.37), !*顶部阴影*!*/
+        /*0 5px 5px rgba(0, 203, 0, 0.37); !*底边阴影*!*/
+    }
+    .bg {
+        padding-top: 1rem;
+        height:4.275rem;
+        background: url("img/07/0002.jpg") no-repeat;
+        background-size: cover;
+    }
+    .qd {
+        font: 0.475rem/2rem "Microsoft YaHei UI";
+        margin: auto;
+        width:2rem;
+        height:2rem;
+        background: whitesmoke;
+        border-radius:100%;
+        opacity: 0.7;
+        color: green;
+        box-shadow: 0 0 100px rgba(233, 233, 233, 0.15);
+        margin-bottom: 0.5rem;
+    }
+
+    .count {
+        color: whitesmoke;
+        font: 0.375rem/0.675rem "Microsoft YaHei UI";
+    }
+</style>
+<body>
+
+<div class="bg">
+    <div class="qd" id="qiandao">签到</div>
+    <div class="count">累计签到<span id="dayCount"></span>天</div>
+</div>
+<div id='calendarPlug-in' class="container"></div>
+
+</body>
+</html>
+
+<script src="js/data.js"></script>
+<script>
+    /*
+     *日历插件
+     *使用部分bootstrap样
+     */
+
+
+
+
+            $(function(){
+
+                var qianDao = {};
+
+                /**
+                 * 插件实现
+                 * @memberOf {TypeName}
+                 * @return {TypeName}
+                 */
+                $.fn.extend = function(){
+                    var myDate = new Date;
+                    var date = {
+                        myYear:myDate.getFullYear(),
+                        myMonth:myDate.getMonth()+1,
+                        myDate:myDate.getDate(),
+                        myDay:1
+                    }
+
+                    getBasicContent();
+                    /**获取日历插件基本信息**/
+                    function getBasicContent(){
+                        var html = "";
+                        html += "<div class='calendarContent'><div class='title'></div><div class='tableContent'></div></div>";
+                        $("#calendarPlug-in").html(html);
+                        getHeader();
+                        getThisMonthDate();
+                        changeMonth();
+                        todayFlag();
+
+                    }
+
+                    /**获取日历头部**/
+                    function getHeader(){
+                        var html = "";
+                        html += "<span id='lastMonth'><span class='glyphicon glyphicon-chevron-left'></span></span>";
+                        html += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id='year'>"+date.myYear+" 年</span>";
+                        html += " <span id='month'>"+date.myMonth+" 月</span>";
+                        html += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id='nextMonth'><span class='glyphicon glyphicon-chevron-right'></span></span>";
+                        $(".title").html(html);
+                    }
+
+                    /**计算某一天是星期几**/
+                    function getWeek(){
+                        var leapLears = 0,totalDays=0;
+                        var monthDay = new Array(31,28,31,30,31,30,31,31,30,31,30,31);
+                        if((date.myYear%4==0 && date.myYear%100!=0) || date.myYear%400==0)
+                            monthDay[1] = 29;
+                        for(var i=1900;i<date.myYear;i++){
+                            if((i%4==0 && i%100!=0) || i%400==0){
+                                leapLears++;
+                            }
+                        }
+                        totalDays += 365*(date.myYear-1900)+leapLears;
+                        for(var i=1;i<date.myMonth;i++){
+                            totalDays += monthDay[i-1];
+                        }
+                        totalDays += date.myDay;
+                        return totalDays%7;
+                    }
+
+
+                    /**标记今天**/
+                    function todayFlag(){
+                        var currentDay = $(".today" + myDate.getDate());
+                        currentDay.css({
+                            "backgroundColor": "rgba(233, 233, 233, 0.67)",
+                        });
+
+                        $("#qiandao").click(function () {
+                            if(!currentDay.hasClass('active')) {
+                                dataIn(date.myYear, date.myMonth, date.myDate)
+//                                console.log(data)
+                            }
+                            currentDay.addClass('active');
+                            $("#dayCount").html(xuanRan(date.myYear, date.myMonth));
+
+                        })
+                    }
+
+                    /**获取某月日期**/
+                    function getThisMonthDate(){
+                        var html="<table class='tableDate'>";
+                        var firstDate = getWeek();
+                        var monthDay = new Array(31,28,31,30,31,30,31,31,30,31,30,31);
+                        if((date.myYear%4==0 && date.myYear%100!=0) || date.myYear%400==0)
+                            monthDay[1] = 29;
+                        var weeks = new Array("日","一","二","三","四","五","六");
+                        html+="<tr>";
+                        for(var i=0;i<7;i++){
+                            html+="<th>"+weeks[i]+"</th>"
+                        }
+                        html+="</tr>";
+                        var x = 0;//每个月的号数
+                        for(var i=0;i<6;i++){
+                            html+="<tr>";
+                            for(var j=0;j<7;j++){
+                                if(i==0 && j<firstDate){
+                                    html+="<td class='day'>&nbsp;&nbsp;</td>";
+                                }
+                                else{
+                                    x++;
+                                    if(x > monthDay[date.myMonth-1]){
+                                        html+="<td class='day'>&nbsp;&nbsp;</td>";
+                                    }else{
+                                        html+="<td class='today today"+x+"'>"+x+"</td>";
+                                    }
+
+                                }
+                            }
+                            html+="</tr>";
+                        }
+                        html+="</table>";
+                        $(".tableContent").html(html);
+
+                        $("#dayCount").html(xuanRan(date.myYear, date.myMonth));
+
+                    }
+
+                    /**切换月份**/
+                    function changeMonth(){
+                        $("#nextMonth").click(function(){
+                            date.myMonth ++;
+                            if(date.myMonth > 12) {
+                                date.myMonth = 1;
+                                date.myYear++;
+                            }
+                            $("#month").text(date.myMonth+"月");
+                            $("#year").text(date.myYear+"年");
+                                getThisMonthDate();
+
+                            if(date.myMonth == myDate.getMonth()+1 && date.myYear == myDate.getFullYear())
+                                todayFlag();
+                        });
+                        $("#lastMonth").click(function(){
+                            date.myMonth --;
+                            if(date.myMonth < 1) {
+                                date.myMonth = 12;
+                                date.myYear--;
+                            }
+
+                                getThisMonthDate();
+                            $("#month").text(date.myMonth+"月");
+                            $("#year").text(date.myYear+"年");
+
+                            if(date.myMonth == myDate.getMonth()+1 && date.myYear == myDate.getFullYear())
+                                todayFlag();
+                        });
+                    }
+                }
+
+                /**
+                 * 插件调用
+                 */
+                $.fn.extend();
+            });
+            console.log(data)
+</script>
+
+
+
+
+

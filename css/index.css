@@ -1,0 +1,94 @@
+@media only screen and (min-width: 320px) {
+    html {
+        font-size: 42.666px !important;
+    }
+}
+@media only screen and (min-width: 360px) {
+    html {
+        font-size: 48px !important;
+    }
+}
+@media only screen and (min-width: 375px) {
+    html {
+        font-size: 50px !important;
+    }
+}
+@media only screen and (min-width: 414px) {
+    html {
+        font-size: 55.2px !important;
+    }
+}
+@media only screen and (min-width: 480px) {
+    html {
+        font-size: 64px !important;
+    }
+}
+@media only screen and (min-width: 560px) {
+    html {
+        font-size: 74.666px !important;
+    }
+}
+@media only screen and (min-width: 640px) {
+    html {
+        font-size: 85.333px !important;
+    }
+}
+@media only screen and (min-width: 720px) {
+    html {
+        font-size: 96px !important;
+    }
+}
+@media only screen and (min-width: 750px) {
+    html {
+        font-size: 100px !important;
+    }
+}
+@media only screen and (min-width: 800px) {
+    html {
+        font-size: 106.666px !important;
+    }
+}
+@media only screen and (min-width: 960px) {
+    html {
+        font-size: 128px !important;
+    }
+}
+
+.wx_container{
+    position:absolute;
+    left:0;
+    right:0;
+    top:0;
+    bottom:0;
+    z-index:-100;
+    background-image: url(../img/00/beijing.jpg);
+    /*background-color: black;*/
+    background-size: cover;
+}
+.itemList {
+    margin-top: 2.375rem;
+}
+.itemList a {
+    display: block;
+    padding: 0 10%;
+    text-decoration: none;
+}
+.item {
+    position: relative;
+    background-color: #fff;
+    height: 1.215rem;
+    border-radius: 3.275rem;
+    font: 0.325rem/1.215rem "Microsoft YaHei";
+    padding-left: 17.25%;
+    margin-bottom: 14%;
+    color: black;
+}
+.pic {
+    position: absolute;
+    border-radius: 100%;
+    right: 7%;
+    top: -20%;
+    border: 1px solid rgba(0, 254, 0, 0.22);
+    box-shadow: -2px -2px 1px lightgreen;
+    width: 1.725rem;
+}

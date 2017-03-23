@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1.1,user-scalable=no">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/base.css" type="text/css" rel="stylesheet" />
+    <link rel="stylesheet"  href="http://cdn.bootcss.com/Swiper/3.4.1/css/swiper.min.css">
+    <title></title>
+    <style>
+        body {
+            background: #fff;
+            font-family: Microsoft YaHei,Helvetica Neue, Helvetica, Arial, sans-serif;
+            font-size:0.3rem;
+            color:#000;
+
+            margin: 0;
+            padding: 0;
+
+        }
+        .swiper-pagination-bullet {
+            width: 8px;
+            height: 8px;
+            display: inline-block;
+            border-radius: 100%;
+            background: #fcf8e3;
+            opacity: .9;}
+
+        .swiper-container {
+            margin: 0;
+            width: 100%;
+            height: 150px;
+            padding: 0;
+            overflow: hidden;
+            border-top: 1px solid lightgrey;
+        }
+        .swiper-slide {
+            text-align: center;
+            font-size: 18px;
+            background: #fff;
+            /* Center slide text vertically */
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: -webkit-flex;
+            display: flex;
+            -webkit-box-pack: center;
+            -ms-flex-pack: center;
+            -webkit-justify-content: center;
+            justify-content: center;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            -webkit-align-items: center;
+            align-items: center;
+        }
+
+
+        .box {
+            background-color: #fff;
+            padding-top: 5px;
+            padding-bottom: 5px;
+            margin: 0;
+            width: 100%;
+            border-top: 1px solid lightgrey;
+            width: 100%;
+        }
+
+        a {
+            text-decoration: none;
+            color: #777777;
+        }
+        .img-rounded {
+            margin-left: 5px;
+            height: 85px;
+            border-radius: 10px;
+        }
+        img {
+            vertical-align: middle;
+        }
+        img {
+            border: 0;
+        }
+        .img-rounded {
+            margin-left: auto;
+            height: 66px;
+            border-radius: 10px;
+        }
+        .tuijian {
+            padding-top: 10px;
+            /* padding-bottom: 8px;*/
+            text-align: center;
+            }
+
+        .tuijian a {
+            display: block;
+        }
+        .tuijian span{
+            color: black;
+            font: 18px/40px "Microsoft YaHei UI";
+        }
+       
+        .col-xs-5 {
+            width: 41.66666667%;
+            padding: 0 5px 5px;
+        }
+        .col-xs-7, .col-xs-8, .col-xs-9 {
+            color: #8c8c8c;
+            font-size: 0.875rem;
+            position: relative;
+            min-height: 1px;
+            padding-right: 5px;
+            padding-left: 10px;
+        }
+
+        a {
+            font-size: initial;
+            text-decoration: none;
+            color: #777777;
+        }
+        /*.pics {*/
+            /*width: 7.12rem;*/
+            /*height: 4.68rem;*/
+            /*background: url(img/00.jpg) no-repeat -190px -70px;*/
+            /*/!* vertical-align: middle; *!/*/
+        /*}*/
+
+
+
+      .box .p1 {
+    color: black;
+    font-size: 1.06rem;
+    /* font: 400 16px/34px "Microsoft YaHei UI"; */
+    margin-bottom: 25%;
+    line-height: 25px;
+}
+
+        p {
+            margin: 0 5px;
+        }
+
+
+        .txts p{
+            margin-bottom: 32px;
+
+        }
+
+        /*这是样式代码*/
+        .container{
+            padding-left: 10px !important;
+            padding-right: 15px !important;
+        }
+        .p1-span{
+            display: inline-block;
+            margin-right: 10px;
+        }
+        @media screen and (max-width: 355px) {
+            span{
+                font-size: 12px;
+            }
+        }
+     .wrapper { position: absolute;
+        left: 0; 
+        top: 270px; 
+        bottom: 5px;
+        width: 100%; 
+        background: #ccc; 
+        overflow: hidden; }
+
+
+    </style>
+
+</head>
+<body>
+
+ <div class="swiper-scrollbar"></div>
+<div class="swiper-container" style=" width: 100%;">
+    <div class="swiper-wrapper">
+        <div class="swiper-slide"><img src="img/03/750x375.jpg" width="100% alt=""/></div>
+        <div class="swiper-slide"><img src="img/03/750x375.jpg" width="100% alt=""/></div>
+        <div class="swiper-slide"><img src="img/03/750x375.jpg" width="100% alt=""/></div>
+        <div class="swiper-slide"><img src="img/03/750x375.jpg" width="100% alt=""/></div>
+    </div>
+    <!-- Add Pagination -->
+    <div class="swiper-pagination"></div>
+    <div class="swiper-pagination swiper-pagination-clickable swiper-pagination-bullets">
+    <span class="swiper-pagination-bullet"></span><span class="swiper-pagination-bullet">
+        
+    </span><span class="swiper-pagination-bullet swiper-pagination-bullet-active">
+        
+    </span><span class="swiper-pagination-bullet"></span></div>
+    <!-- Add Arrows -->
+</div>
+
+
+
+<div class="tuijian clearfix">
+<div class="col-xs-6">
+        <a href="meishi.html">
+            <img src="img/03/300x150.png" alt="" width="100%" class="img-rounded">
+            <span>24节气介绍</span>
+        </a>
+    </div>
+
+    <div class="col-xs-6">
+       <a href="meishi.html">
+            <img src="img/03/300x150 (2).png" alt="" width="100%" class="img-rounded">
+            <span>苹果的吃法</span>
+        </a>
+    </div>
+
+</div>
+
+
+
+ <div class="wrapper">
+            <div class="scroll-list">
+    
+
+     <div class="row box">
+            <div class="col-xs-5">
+                <img src="img/03/250x170.png" alt="" width="100%"/>
+            </div>
+            <div class="col-xs-7">
+                <p class="p1">当地美食排行榜</p>
+                <span class="glyphicon glyphicon-time"></span>
+                <span class="p1-span">2016-12-16</span>
+                <span class="glyphicon glyphicon-eye-open"></span>
+                <span>255</span>
+            </div>
+        </div>
+
+        <div class="row box">
+            <div class="col-xs-5">
+                <img src="img/03/250x170.png" alt="" width="100%"/>
+            </div>
+            <div class="col-xs-7">
+                <p class="p1">当地美食排行榜</p>
+                <span class="glyphicon glyphicon-time"></span>
+                <span class="p1-span">2016-12-16</span>
+                <span class="glyphicon glyphicon-eye-open"></span>
+                <span>255</span>
+            </div>
+        </div>
+
+
+         <div class="row box">
+            <div class="col-xs-5">
+                <img src="img/03/250x170.png" alt="" width="100%"/>
+            </div>
+            <div class="col-xs-7">
+                <p class="p1">当地美食排行榜</p>
+                <span class="glyphicon glyphicon-time"></span>
+                <span class="p1-span">2016-12-16</span>
+                <span class="glyphicon glyphicon-eye-open"></span>
+                <span>255</span>
+            </div>
+        </div>
+
+
+
+         <div class="row box">
+            <div class="col-xs-5">
+                <img src="img/03/250x170.png" alt="" width="100%"/>
+            </div>
+            <div class="col-xs-7">
+                <p class="p1">当地美食排行榜</p>
+                <span class="glyphicon glyphicon-time"></span>
+                <span class="p1-span">2016-12-16</span>
+                <span class="glyphicon glyphicon-eye-open"></span>
+                <span>255</span>
+            </div>
+        </div>
+         <div class="row box">
+            <div class="col-xs-5">
+                <img src="img/03/250x170.png" alt="" width="100%"/>
+            </div>
+            <div class="col-xs-7">
+                <p class="p1">当地美食排行榜</p>
+                <span class="glyphicon glyphicon-time"></span>
+                <span class="p1-span">2016-12-16</span>
+                <span class="glyphicon glyphicon-eye-open"></span>
+                <span>255</span>
+            </div>
+        </div>
+         </div>
+            </div>
+    
+
+
+        <script src="https://cdn.bootcss.com/Swiper/3.4.2/js/swiper.js"></script>
+        <script src="js/iscroll.js" charset="utf-8"></script>
+        <script type="text/javascript">
+            new IScroll('.wrapper');
+
+            new Swiper ('.swiper-container', {});
+        </script>
+    </body>
+</html>
+
+
+
+
+
+
